@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ART/SPARME Digital Register</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="mobile-container">
+        <!-- Top Header -->
+        <header>
+            <button id="back-btn" onclick="goHome()" style="display:none;"><i class="fas fa-arrow-left"></i></button>
+            <h2 id="header-title">ART/SPARME App</h2>
+            <i class="fas fa-user-circle"></i>
+        </header>
+
+        <!-- Home Screen -->
+        <div id="home-screen" class="page active">
+            <div class="menu-card" onclick="showPage('manuals')">
+                <i class="fas fa-book-open"></i> <span>Manuals</span>
+            </div>
+            <div class="menu-card" onclick="showPage('circulars')">
+                <i class="fas fa-file-alt"></i> <span>Latest Circulars</span>
+            </div>
+            <hr>
+            <h4 class="section-label">Units (Locations)</h4>
+            <div class="menu-card location" onclick="showUnit('ART UDHNA')">
+                <i class="fas fa-train"></i> <span>ART UDHNA</span>
+            </div>
+            <div class="menu-card location" onclick="showUnit('SPARME UDHNA')">
+                <i class="fas fa-ambulance"></i> <span>SPARME UDHNA</span>
+            </div>
+            <div class="menu-card location" onclick="showUnit('ART NANDURBAR')">
+                <i class="fas fa-train"></i> <span>ART NANDURBAR</span>
+            </div>
+        </div>
+
+        <!-- Unit Detail Screen (Hierarchy) -->
+        <div id="unit-detail-screen" class="page">
+            <div class="list-item" onclick="showData('Composition')">Composition of ART</div>
+            <div class="list-item" onclick="showData('Schedule')">Coach Schedule Details</div>
+            <div class="list-item" onclick="showData('Movement')">Movement Details</div>
+            <div class="list-item" onclick="showData('Equipment')">Equipment Details</div>
+        </div>
+
+        <!-- Data View Screen (Table) -->
+        <div id="data-view-screen" class="page">
+            <h3 id="data-title">Equipment List</h3>
+            <div class="table-container" id="data-content">
+                <!-- Data will be injected here -->
+            </div>
+        </div>
+
+        <!-- Manuals Screen -->
+        <div id="manuals" class="page">
+            <div class="list-item"><i class="far fa-file-pdf"></i> Accident Manual</div>
+            <div class="list-item"><i class="far fa-file-pdf"></i> G&SR Manual</div>
+            <div class="list-item"><i class="far fa-file-pdf"></i> Operating Manual</div>
+        </div>
+
+        <!-- Bottom Navigation -->
+        <nav class="bottom-nav">
+            <div onclick="goHome()"><i class="fas fa-home"></i><p>Home</p></div>
+            <div><i class="fas fa-search"></i><p>Search</p></div>
+            <div><i class="fas fa-bell"></i><p>Alerts</p></div>
+        </nav>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

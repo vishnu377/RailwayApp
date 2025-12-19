@@ -1,0 +1,77 @@
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: sans-serif; }
+body { background: #f0f2f5; display: flex; justify-content: center; }
+
+/* Mobile Container */
+.mobile-container {
+    width: 100%;
+    max-width: 450px; /* Mobile width */
+    height: 100vh;
+    background: #fff;
+    position: relative;
+    overflow-y: auto;
+    box-shadow: 0 0 20px rgba(0,0,0,0.1);
+}
+
+header {
+    background: #003366; /* Railway Blue */
+    color: white;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.page { display: none; padding: 15px; padding-bottom: 80px; }
+.active { display: block; }
+
+.menu-card {
+    background: #fff;
+    padding: 20px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    border: 1px solid #ddd;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.05);
+    cursor: pointer;
+}
+.menu-card i { font-size: 24px; color: #003366; }
+.location { border-left: 5px solid #28a745; }
+
+.section-label { margin: 15px 0 10px; color: #666; font-size: 14px; }
+
+.list-item {
+    padding: 15px;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+}
+
+/* Table Style */
+.table-container { overflow-x: auto; font-size: 12px; }
+table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+th { background: #f4f4f4; }
+.shortfall { color: red; font-weight: bold; }
+
+/* Bottom Nav */
+.bottom-nav {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    max-width: 450px;
+    background: #fff;
+    display: flex;
+    justify-content: space-around;
+    padding: 10px;
+    border-top: 1px solid #ddd;
+}
+.bottom-nav div { text-align: center; color: #666; cursor: pointer; }
+.bottom-nav i { font-size: 20px; }
+.bottom-nav p { font-size: 10px; }
