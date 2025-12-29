@@ -1,25 +1,31 @@
-// Screen badalne ka function
+
+
+
+
+
+
+
+
 function showScreen(screenId) {
-    // 1. Saari screens ko hide karo
-    const screens = document.querySelectorAll('.screen');
-    screens.forEach(screen => {
+    // 1. All screens hide
+    document.querySelectorAll('.screen').forEach(screen => {
         screen.classList.remove('active');
     });
 
-    // 2. Target screen ko show karo
-    const targetScreen = document.getElementById(screenId);
-    if (targetScreen) {
-        targetScreen.classList.add('active');
-    }
+    // 2. Active selected screen
+    const target = document.getElementById(screenId);
+    if (target) target.classList.add('active');
 
-    // 3. Bottom Navigation icons update karo
-    updateBottomNav(screenId);
+    // 3. Update Nav Icons color
+    document.querySelectorAll('.bottom-nav i').forEach(icon => icon.classList.remove('active'));
+    if (screenId === 'dashboard-screen') document.querySelectorAll('.bottom-nav i')[0].classList.add('active');
+    if (screenId === 'equipment-screen') document.querySelectorAll('.bottom-nav i')[1].classList.add('active');
+    if (screenId === 'settings-screen') document.querySelectorAll('.bottom-nav i')[3].classList.add('active');
 
-    // 4. Sidebar band karo
+    // 4. Close menu
     toggleMenu(false);
 }
 
-// Sidebar open/close function
 function toggleMenu(forceClose = null) {
     const sidebar = document.getElementById('sidebar');
     if (forceClose === false) {
@@ -29,30 +35,15 @@ function toggleMenu(forceClose = null) {
     }
 }
 
-// Bottom Navigation ka active color change karne ke liye
-function updateBottomNav(screenId) {
-    const navIcons = document.querySelectorAll('.bottom-nav i');
-    navIcons.forEach(icon => icon.classList.remove('active'));
-
-    // Dashboard aur search ke hisab se icon active karo
-    if (screenId === 'dashboard-screen') {
-        navIcons[0].classList.add('active');
-    } else if (screenId === 'equipment-screen') {
-        navIcons[1].classList.add('active');
-    }
+function updateTitle(view) {
+    document.getElementById('dashboard-title').innerText = `Dashboard (${view})`;
 }
 
-// HQ vs Division Toggle Logic
-document.querySelectorAll('.toggle-btn').forEach(button => {
-    button.addEventListener('click', function() {
-        // Purana active htao
-        this.parentElement.querySelector('.active').classList.remove('active');
-        // Naya active add karo
-        this.classList.add('active');
-    });
+// HQ vs Division Toggle Effect
+document.addEventListener('click', function (e) {
+    if (e.target.classList.contains('toggle-btn')) {
+        const parent = e.target.parentElement;
+        parent.querySelector('.active').classList.remove('active');
+        e.target.classList.add('active');
+    }
 });
-
-// Initial Load par Login screen dikhao (agar HTML me active nahi hai)
-window.onload = () => {
-    console.log("Railway ART App Loaded Successfully");
-};

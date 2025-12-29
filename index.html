@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,6 +13,29 @@
 
 <div class="mobile-container">
     
+    <!-- SIDEBAR MENU -->
+    <div id="sidebar" class="sidebar">
+        <div class="sidebar-header">
+            <img src="https://via.placeholder.com/50" alt="User">
+            <div><strong>Supervisor Kumar</strong><br><small>SSE/ART/UDN</small></div>
+        </div>
+        <ul>
+            <li onclick="showScreen('dashboard-screen')"><i class="fas fa-home"></i> Dashboard</li>
+            <li onclick="showScreen('composition-screen')"><i class="fas fa-train"></i> Composition Details</li>
+            <li onclick="showScreen('inspection-screen')"><i class="fas fa-clipboard-check"></i> Inspection Details</li>
+            <li onclick="showScreen('beat-screen')"><i class="fas fa-map-marked-alt"></i> Beat Details</li>
+            <li onclick="showScreen('equipment-screen')"><i class="fas fa-tools"></i> Equipment & Inventory</li>
+            <li onclick="showScreen('manuals-screen')"><i class="fas fa-book"></i> Manuals & Rules</li>
+            <li onclick="showScreen('drawings-screen')"><i class="fas fa-project-diagram"></i> Drawings & Diagrams</li>
+            <li onclick="showScreen('contacts-screen')"><i class="fas fa-phone-alt"></i> Important Contacts</li>
+            <li onclick="showScreen('staff-screen')"><i class="fas fa-users"></i> Nominated Staff</li>
+            <li onclick="showScreen('movement-screen')"><i class="fas fa-history"></i> Movement Records</li>
+            <li onclick="showScreen('offline-screen')"><i class="fas fa-sync"></i> Offline Status</li>
+            <li onclick="showScreen('settings-screen')"><i class="fas fa-cog"></i> Settings</li>
+            <li onclick="showScreen('login-screen')" style="color:red; border-top:1px solid #eee; margin-top:10px;"><i class="fas fa-sign-out-alt"></i> Logout</li>
+        </ul>
+    </div>
+
     <!-- 1. LOGIN SCREEN -->
     <section id="login-screen" class="screen active">
         <div class="login-box">
@@ -23,26 +48,23 @@
         </div>
     </section>
 
-    <!-- 2. DASHBOARD (HQ/DIVISION VIEW) -->
+    <!-- 2. DASHBOARD -->
     <section id="dashboard-screen" class="screen">
         <header>
             <i class="fas fa-bars" onclick="toggleMenu()"></i>
-            <span>Dashboard (HQ View)</span>
+            <span id="dashboard-title">Dashboard (HQ View)</span>
             <i class="fas fa-bell"></i>
         </header>
         <div class="content">
-            <!-- HQ vs Division Toggle (As per Image 2) -->
             <div class="toggle-container">
-                <button class="toggle-btn active">HQ View</button>
-                <button class="toggle-btn">Division View</button>
+                <button class="toggle-btn active" onclick="updateTitle('HQ View')">HQ View</button>
+                <button class="toggle-btn" onclick="updateTitle('Division View')">Division View</button>
             </div>
-
             <div class="stats-grid">
                 <div class="stat-card"><h3>12</h3><p>Total ART Rakes</p></div>
                 <div class="stat-card yellow"><h3>4</h3><p>Pending Insp.</p></div>
                 <div class="stat-card red"><h3>3</h3><p>Shortfall</p></div>
             </div>
-
             <h4 class="section-title">Inspection Management</h4>
             <div class="card">
                 <div class="card-info">
@@ -55,190 +77,59 @@
         </div>
     </section>
 
-    <!-- 3. MANUALS & RULES (As per Image 1) -->
+    <!-- 3. EQUIPMENT SCREEN -->
+    <section id="equipment-screen" class="screen">
+        <header>
+            <i class="fas fa-arrow-left" onclick="showScreen('dashboard-screen')"></i>
+            <span>Equipment & Inventory</span>
+        </header>
+        <div class="content">
+            <div class="search-bar"><i class="fas fa-search"></i><input type="text" placeholder="Search equipment..."></div>
+            <div class="card">
+                <div class="card-info">
+                    <h4>Hydraulic Cutter</h4>
+                    <p>Standard: 4 | Available: 2</p>
+                </div>
+                <span class="badge red">Shortfall</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. MANUALS SCREEN -->
     <section id="manuals-screen" class="screen">
         <header>
             <i class="fas fa-arrow-left" onclick="showScreen('dashboard-screen')"></i>
             <span>Manuals & Rules</span>
         </header>
         <div class="content">
-            <div class="search-bar"><i class="fas fa-search"></i><input type="text" placeholder="Search manuals..."></div>
             <div class="card">
                 <div class="card-info">
                     <h4>Disaster Management Manual</h4>
-                    <p>Last updated: Jan 2024</p>
-                </div>
-                <button class="icon-btn"><i class="fas fa-file-pdf"></i></button>
-            </div>
-            <div class="card">
-                <div class="card-info">
-                    <h4>G&SR Rule Book</h4>
-                    <p>Operating Department</p>
+                    <p>Latest Version: 2024</p>
                 </div>
                 <button class="icon-btn"><i class="fas fa-file-pdf"></i></button>
             </div>
         </div>
     </section>
 
-    <!-- 4. IMPORTANT CONTACTS -->
-    <section id="contacts-screen" class="screen">
-        <header>
-            <i class="fas fa-arrow-left" onclick="showScreen('dashboard-screen')"></i>
-            <span>Important Contacts</span>
-        </header>
-        <div class="content">
-            <div class="toggle-container">
-                <button class="toggle-btn active">Railway</button>
-                <button class="toggle-btn">Non-Railway</button>
-            </div>
-            <div class="card">
-                <div class="card-info">
-                    <h4>Mr. Rajesh Agarwal</h4>
-                    <p>Sr. DSO / BCT</p>
-                    <strong>97240XXXXX</strong>
-                </div>
-                <button class="icon-btn green-btn"><i class="fas fa-phone"></i></button>
-            </div>
-        </div>
-    </section>
-
-    <!-- 5. NOMINATED STAFF -->
-    <section id="staff-screen" class="screen">
-        <header>
-            <i class="fas fa-arrow-left" onclick="showScreen('dashboard-screen')"></i>
-            <span>Nominated Staff</span>
-        </header>
-        <div class="content">
-            <div class="card">
-                <div class="card-info">
-                    <h4>Anil Kumar</h4>
-                    <p>Designation: SSE/P-Way</p>
-                    <small>Dist from Depot: 2.5 KM</small>
-                </div>
-                <span class="badge green">On Duty</span>
-            </div>
-        </div>
-    </section>
-<!-- 6. DRAWINGS & DIAGRAMS (Image 1 - Row 2) -->
-<section id="drawings-screen" class="screen">
-    <header>
-        <i class="fas fa-arrow-left" onclick="showScreen('dashboard-screen')"></i>
-        <span>Drawings & Diagrams</span>
-    </header>
-    <div class="content">
-        <div class="search-bar"><i class="fas fa-search"></i><input type="text" placeholder="Search diagrams..."></div>
-        <div class="list-item-arrow" onclick="alert('Opening Station Layout...')">
-            <div class="item-text"><strong>Important Station Layouts</strong><p>Main line section</p></div>
-            <i class="fas fa-chevron-right"></i>
-        </div>
-        <div class="list-item-arrow">
-            <div class="item-text"><strong>TV Section</strong><p>Rolling Stock Details</p></div>
-            <i class="fas fa-chevron-right"></i>
-        </div>
-        <div class="list-item-arrow">
-            <div class="item-text"><strong>OHE Portal Position</strong><p>Section wise mapping</p></div>
-            <i class="fas fa-chevron-right"></i>
-        </div>
-    </div>
-</section>
-
-<!-- 7. MOVEMENT RECORDS (Image 1 - Row 3) -->
-<section id="movement-screen" class="screen">
-    <header>
-        <i class="fas fa-arrow-left" onclick="showScreen('dashboard-screen')"></i>
-        <span>Movement Records</span>
-    </header>
-    <div class="content">
-        <div class="toggle-container" style="font-size: 11px;">
-            <button class="toggle-btn active">Accident Site</button>
-            <button class="toggle-btn">Mock Drill</button>
-            <button class="toggle-btn">Trial Run</button>
-        </div>
-        <div class="card">
-            <div class="card-info">
-                <h4>Reerlest Station</h4>
-                <p>Date: 08-Apr-2024</p>
-                <small>Brief: Derailment practice</small>
-            </div>
-            <span class="badge yellow">Report Pending</span>
-        </div>
-        <div class="card">
-            <div class="card-info">
-                <h4>Gaadibuiny Station</h4>
-                <p>Date: 12-Mar-2024</p>
-                <small>Brief: Full scale mock drill</small>
-            </div>
-            <span class="badge green">Report Filed</span>
-        </div>
-    </div>
-</section>
-
-<!-- 8. COMPOSITION DETAILS (Image 2 - Row 1) -->
-<section id="composition-screen" class="screen">
-    <header>
-        <i class="fas fa-arrow-left" onclick="showScreen('dashboard-screen')"></i>
-        <span>Composition Details</span>
-    </header>
-    <div class="content">
-        <h4 class="section-title">ART Rake Train No. 12345</h4>
-        <div class="composition-table">
-            <div class="comp-row header"><span>Coach</span><span>Type</span><span>Status</span></div>
-            <div class="comp-row"><span>ART P1</span><span>Tool Van</span><span class="green-text">OK</span></div>
-            <div class="comp-row"><span>ART P2</span><span>Medical Van</span><span class="green-text">OK</span></div>
-            <div class="comp-row"><span>ART P3</span><span>Brake Van</span><span class="red-text">Repair</span></div>
-            <div class="comp-row"><span>ART P4</span><span>Staff Van</span><span class="green-text">OK</span></div>
-        </div>
-    </div>
-</section>
-
-<!-- 9. SETTINGS & PROFILE (Image 1 - Row 4) -->
-<section id="settings-screen" class="screen">
-    <header>
-        <i class="fas fa-bars" onclick="toggleMenu()"></i>
-        <span>Settings</span>
-    </header>
-    <div class="content">
-        <div class="profile-section">
-            <img src="https://via.placeholder.com/80" style="border-radius: 50%;">
-            <h3>Supervisor Kumar</h3>
-            <p>SSE / ART / UDN</p>
-        </div>
-        <div class="settings-list">
-            <div class="list-item-arrow"><i class="fas fa-user-circle"></i> My Profile <i class="fas fa-chevron-right"></i></div>
-            <div class="list-item-arrow"><i class="fas fa-globe"></i> App Language <i class="fas fa-chevron-right"></i></div>
-            <div class="list-item-arrow"><i class="fas fa-shield-alt"></i> Security <i class="fas fa-chevron-right"></i></div>
-            <div class="list-item-arrow" style="color: red;" onclick="showScreen('login-screen')"><i class="fas fa-sign-out-alt"></i> Logout</div>
-        </div>
-    </div>
-</section>
-    <!-- SIDEBAR MENU -->
-   <!-- SIDEBAR MENU (REPLACED & FIXED) -->
-<div id="sidebar" class="sidebar">
-    <div class="sidebar-header">
-        <img src="https://via.placeholder.com/50" alt="User">
-        <div><strong>Supervisor Kumar</strong><br><small>SSE/ART/UDN</small></div>
-    </div>
-    <ul>
-        <li onclick="showScreen('dashboard-screen')"><i class="fas fa-home"></i> Dashboard</li>
-        <li onclick="showScreen('composition-screen')"><i class="fas fa-train"></i> Composition Details</li>
-        <li onclick="showScreen('manuals-screen')"><i class="fas fa-book"></i> Manuals & Rules</li>
-        <li onclick="showScreen('drawings-screen')"><i class="fas fa-project-diagram"></i> Drawings & Diagrams</li>
-        <li onclick="showScreen('contacts-screen')"><i class="fas fa-phone-alt"></i> Important Contacts</li>
-        <li onclick="showScreen('staff-screen')"><i class="fas fa-users"></i> Nominated Staff</li>
-        <li onclick="showScreen('movement-screen')"><i class="fas fa-history"></i> Movement Records</li>
-        <li onclick="showScreen('settings-screen')"><i class="fas fa-cog"></i> Settings</li>
-        <li onclick="showScreen('login-screen')" style="color: var(--danger); border-top: 1px solid #eee; margin-top: 10px;">
-            <i class="fas fa-sign-out-alt"></i> Logout
-        </li>
-    </ul>
-</div>
+    <!-- Placeholder for remaining screens (Composition, Inspection, etc.) -->
+    <!-- Aapne pichle message se jo content liya tha wo yahan add karte rahein -->
+    <section id="composition-screen" class="screen"><header><i class="fas fa-arrow-left" onclick="showScreen('dashboard-screen')"></i><span>Composition</span></header><div class="content"><p>Composition Data Loading...</p></div></section>
+    <section id="inspection-screen" class="screen"><header><i class="fas fa-arrow-left" onclick="showScreen('dashboard-screen')"></i><span>Inspection</span></header><div class="content"><p>Inspection Records...</p></div></section>
+    <section id="beat-screen" class="screen"><header><i class="fas fa-arrow-left" onclick="showScreen('dashboard-screen')"></i><span>Beat Details</span></header><div class="content"><p>Route Mapping...</p></div></section>
+    <section id="drawings-screen" class="screen"><header><i class="fas fa-arrow-left" onclick="showScreen('dashboard-screen')"></i><span>Drawings</span></header><div class="content"><p>Drawings & Diagrams...</p></div></section>
+    <section id="contacts-screen" class="screen"><header><i class="fas fa-arrow-left" onclick="showScreen('dashboard-screen')"></i><span>Contacts</span></header><div class="content"><p>Contact Directory...</p></div></section>
+    <section id="staff-screen" class="screen"><header><i class="fas fa-arrow-left" onclick="showScreen('dashboard-screen')"></i><span>Staff</span></header><div class="content"><p>Staff Management...</p></div></section>
+    <section id="movement-screen" class="screen"><header><i class="fas fa-arrow-left" onclick="showScreen('dashboard-screen')"></i><span>Movements</span></header><div class="content"><p>Movement Logs...</p></div></section>
+    <section id="offline-screen" class="screen"><header><i class="fas fa-arrow-left" onclick="showScreen('dashboard-screen')"></i><span>Offline Mode</span></header><div class="content"><p>Sync Status...</p></div></section>
+    <section id="settings-screen" class="screen"><header><i class="fas fa-bars" onclick="toggleMenu()"></i><span>Settings</span></header><div class="content"><p>App Settings...</p></div></section>
 
     <!-- BOTTOM NAVIGATION -->
     <nav class="bottom-nav">
-        <i class="fas fa-home" onclick="showScreen('dashboard-screen')"></i>
-        <i class="fas fa-tools"></i>
+        <i class="fas fa-home active" onclick="showScreen('dashboard-screen')"></i>
+        <i class="fas fa-tools" onclick="showScreen('equipment-screen')"></i>
         <i class="fas fa-clipboard-list"></i>
-        <i class="fas fa-user"></i>
+        <i class="fas fa-user" onclick="showScreen('settings-screen')"></i>
     </nav>
 </div>
 
